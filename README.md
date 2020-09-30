@@ -1,12 +1,14 @@
 # Brubeck
-
+---------
 Brubeck is a [statsd](https://github.com/etsy/statsd)-compatible stats
 aggregator written in C.
 
 ## What is statsd?
-
-Statsd is a metrics aggregator for Graphite (and other data storage backends). This
-technical documentation assumes working knowledge of what statsd is and how it works;
+------------------
+StatsD is originally a simple daemon developed and released by Etsy to aggregate and 
+summarize application metrics. Statsd is a metrics aggregator for Graphite (and other 
+data storage backends). This technical documentation assumes working knowledge of what
+statsd is and how it works; 
 please read the [statsd documentation](https://github.com/etsy/statsd#statsd-) for
 more details.
 
@@ -14,7 +16,7 @@ Statsd is a good idea, and if you're using Graphite for metrics collection in yo
 infrastructure, you probably want a statsd-compatible aggregator in front of it.
 
 ## Tradeoffs
-
+------------
 - Brubeck is missing many of the features of the original StatsD. We've only implemented what we felt was necessary for our metrics stack.
 
 - Brubeck only runs on Linux. It won't even build on Mac OS X.
@@ -22,7 +24,7 @@ infrastructure, you probably want a statsd-compatible aggregator in front of it.
 - Some of the performance features require a (moderately) recent version of the kernel that you may not have.
 
 ## Building
-
+-----------
 Brubeck has the following dependencies:
 
 - A Turing-complete computing device running a modern version of the Linux kernel
@@ -44,7 +46,7 @@ Other operating systems or kernels can probably build Brubeck too. More specific
 Brubeck has been seen to work under FreeBSD and OpenBSD, but this is not supported.
 
 ## Supported Metric Types
-
+-------------------------
 Brubeck supports most of the metric types from statsd and many other implementations.
 
 - `g` - Gauges
@@ -58,11 +60,11 @@ Client-sent sampling rates are ignored.
 Visit the [statsd docs](https://github.com/etsy/statsd/blob/master/docs/metric_types.md) for more information on metric types.
 
 ## Interfacing
-
+--------------
 The are several ways to interact with a running Brubeck daemon.
 
 ### Signals
-
+-----------
 Brubeck answers to the following signals:
 
 - `SIGINT`, `SIGTERM`: shutdown cleanly
@@ -71,7 +73,7 @@ Brubeck answers to the following signals:
     daemon and their types.
 
 ### HTTP Endpoint
-
+-----------------
 If enabled on the config file, Brubeck can provide an HTTP API to poll its status. The following routes are available:
 
 - `GET /ping`: return a short JSON payload with the current status of the daemon (just to check it's up)
@@ -80,7 +82,7 @@ If enabled on the config file, Brubeck can provide an HTTP API to poll its statu
 - `POST /expire/{{metric_name}}`: expire a metric that is no longer being reported to stop it from being aggregated to the backend
 
 ## Configuration
-
+----------------
 The configuration for Brubeck is loaded through a JSON file, passed on the commandline.
 
     ./brubeck --config=my.config.json
@@ -189,7 +191,7 @@ incoming metrics from the network.
         send all your metrics inside a VPN, I suggest you do that instead.
 
 ## Testing
-
+----------
 There's some tests in the `test` folder for key parts of the system (such as packet parsing,
 and all concurrent data access); besides that we test the behavior of the daemon live on staging
 and production systems.
@@ -212,7 +214,7 @@ have been doing so for years, but we cannot make any promises regarding availabi
 performance.
 
 ## FAQ
-
+------
 - **I cannot hit 4 million UDP metrics per second. I want my money back.**
 
 Make sure receiver-side scaling is properly configured in your kernel and that IRQs
