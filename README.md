@@ -6,7 +6,7 @@ aggregator written in C.
 ## What is statsd?
 ------------------
 StatsD is originally a simple daemon developed and released by Etsy to aggregate and 
-summarize application metrics.Statsd is a metrics aggregator for Graphite (and other 
+summarize application metrics. Statsd is a metrics aggregator for Graphite (and other 
 data storage backends). This technical documentation assumes working knowledge of what
 statsd is and how it works; 
 please read the [statsd documentation](https://github.com/etsy/statsd#statsd-) for
